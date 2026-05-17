@@ -1,0 +1,7 @@
+!data/.gitkeep
+.DS_Store
+.env
+.omc/
+*.log
+data/*.json
+node_modules/

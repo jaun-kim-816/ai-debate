@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Debate · 클로드 × 지피티 × 나</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <h1>AI Debate</h1>
+        <p class="tagline">클로드 · 지피티 · 나, 한 주제로 계속 토론</p>
+
+        <form id="new-form" class="card new-form">
+          <label>질문 / 토론 주제</label>
+          <textarea id="topic" rows="3" placeholder="질문을 입력하면 클로드·지피티가 한 사이클 토론한 뒤 답합니다.&#10;예: 교대 근무자에게 낮잠은 권장해야 하는가?"></textarea>
+
+          <label>진행 모드</label>
+          <div class="seg" id="mode-seg">
+            <button type="button" data-mode="manual" class="active">수동 (라운드마다 개입)</button>
+            <button type="button" data-mode="auto">자동 (N라운드 후 요약)</button>
+          </div>
+
+          <div id="auto-rounds-wrap" class="hidden">
+            <label>자동 라운드 수</label>
+            <input id="auto-rounds" type="number" min="1" max="10" value="3" />
+          </div>
+
+          <button type="submit" class="primary">질문하고 토론 시작</button>
+        </form>
+
+        <h2>이전 토론</h2>
+        <ul id="session-list" class="session-list"></ul>
+      </aside>
+
+      <main class="main">
+        <div id="empty" class="empty">
+          <p>왼쪽에 질문을 입력하면 클로드·지피티가 한 사이클 토론한 뒤 답합니다.</p>
+          <p id="provider-info" class="muted"></p>
+        </div>
+
+        <section id="room" class="room hidden">
+          <header class="room-head">
+            <div>
+              <h2 id="room-topic"></h2>
+              <span id="room-meta" class="muted"></span>
+            </div>
+            <button id="delete-btn" class="ghost" title="이 토론 삭제">삭제</button>
+          </header>
+
+          <div id="thread" class="thread"></div>
+
+          <div class="controls card">
+            <div id="busy" class="busy hidden">진행 중… (AI 응답 대기)</div>
+            <div class="control-row">
+              <button id="round-btn" class="primary">다음 라운드 (클로드→지피티)</button>
+              <button id="auto-btn" class="secondary">자동 N라운드 + 요약</button>
+              <button id="summary-btn" class="ghost">지금 요약</button>
+            </div>
+            <form id="say-form" class="say">
+              <input id="say-input" placeholder="내 의견/방향 추가하기…" />
+              <button type="submit" class="secondary">전송</button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="/app.js"></script>
+  </body>
+</html>
